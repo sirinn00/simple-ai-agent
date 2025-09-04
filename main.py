@@ -9,3 +9,13 @@ load_dotenv() //load environment variables from .env file
 def main():
     model = ChatOpenAI(temperature=0) //initialize the ChatOpenAI model with a temperature of 0 for deterministic responses
     //the higher temperature, the more random the model is going to be.
+
+    tools = [] //initialize an empty list to hold tools
+
+    agent_executor = create_react_agent(model, tools)
+
+    print("Welcome i am your AI agent. How can I help you today? Type 'exit' to quit.")
+    print("You can ask me to perform calculations or chat with me.")
+
+    
+
