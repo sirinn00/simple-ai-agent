@@ -6,13 +6,25 @@ from dotenv import load_dotenv #load environment variables from a .env file into
 
 load_dotenv() #load environment variables from .env file
 
+#tool is just some external service that the agent can call to and utilize
 
+@tool
+def calculator(a: float,b:float) -> str:
+    """Useful for performing basic arithmetic operations with numbers."""
+    print("Tool has been called")
+    return f"The sum of {a} and {b} is: {a + b}"
+
+@tool
+def say_hello(name:str) -> str:
+    """Useful for greeting a user by name."""
+    print("Tool has been called")
+    return f"Hello, {name}! I hope you're having a great day!"
 
 def main():
     model = ChatOpenAI(model="gpt-4o-mini",temperature=0) #initialize the ChatOpenAI model with a temperature of 0 for deterministic responses
     #the higher temperature, the more random the model is going to be.
 
-    tools = [] #initialize an empty list to hold tools
+    tools = [calculator,say_hello] #initialize an empty list to hold tools
 
 
     agent_executor = create_react_agent(model, tools)
