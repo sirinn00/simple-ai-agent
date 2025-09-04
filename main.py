@@ -27,5 +27,10 @@ def main():
 
         for chunk in agent_executor.stream(
             {"messages": [HumanMessage(content=user_input)]} //wrap user input in a HumanMessage object
-        )
+        ):
+            if "agent" in chunk and "messages" in chunk["agent"]:
+                for message in chunk["agent"]["messages"]:
+                    print(message.content, end="") //print the content of each message chunk as it is received
+
+               
 
