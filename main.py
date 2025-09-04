@@ -17,5 +17,15 @@ def main():
     print("Welcome i am your AI agent. How can I help you today? Type 'exit' to quit.")
     print("You can ask me to perform calculations or chat with me.")
 
-    
+    while True:
+        user_input = input("\nYou: ").strip()
+
+        if user_input == "quit":
+            break
+        
+        print("\nAssistant: ", end="")
+
+        for chunk in agent_executor.stream(
+            {"messages": [HumanMessage(content=user_input)]} //wrap user input in a HumanMessage object
+        )
 
