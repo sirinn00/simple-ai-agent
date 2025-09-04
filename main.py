@@ -4,3 +4,8 @@ from langchain.tools import tool
 from langgraph.prebuilt import create_react_agent //complex framework that allows us three to build AI agents
 from dotenv import load_dotenv //load environment variables from a .env file into the system's environment variables
 
+load_dotenv() //load environment variables from .env file
+
+def main():
+    model = ChatOpenAI(temperature=0) //initialize the ChatOpenAI model with a temperature of 0 for deterministic responses
+    //the higher temperature, the more random the model is going to be.
